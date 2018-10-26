@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const routes = require('./router_actions');
+const Question = require('./model');
 
 router.get('/', routes.index);
 
 router.route('/api')
     .get((req, res) => {
-        res.json({method: "GET"})
+        res.json({name: "Alisher"})
     })
-    .post((req, res) => {
-        res.json({method: "POST"})
-    })
+    .post(routes.create)
     .delete((req, res) => {
         res.json({method: "DELETE"})
     })
     .put((req, res) => {
+        console.log(req.params)
         res.json({method: "PUT"})
     })
 

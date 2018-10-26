@@ -21,7 +21,20 @@ app.use(jsonParser());
 app.use(morgan('tiny'));
 app.use('/questions', routes);
 
-// 404 pages
+app.get('/', (req, res) => {
+    console.log(req.body)
+    res.send({name: 'Alisher'})
+});
+
+app.delete('/', (req, res) => {
+    res.send({method: 'Delete'})
+})
+app.post('/', (req, res) => {
+    console.log('POST +++++++',req.body)
+    res.send({method: 'Post'})
+});
+
+//404 pages
 app.use((req, res, next) => {
     const err = new Error('Not Fount');
     err.status = 404;
@@ -33,16 +46,6 @@ app.use((err, req, res, next) => {
     res.json({error: {message: err.message}});
 })
 
-app.get('/', (req, res) => {
-    res.send({name: 'Alisher'})
-});
-
-app.delete('/', (req, res) => {
-    res.send({method: 'Delete'})
-})
-app.put('/', (req, res) => {
-    res.send({method: 'Put'})
-})
 app.listen(port, () => {
     console.log('App is running on port '+port);
 });
